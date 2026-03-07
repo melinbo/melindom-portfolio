@@ -1,97 +1,892 @@
-# melindombo-portfolio
-# Melissa Ndombasi Bokuy
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Melissa Ndombasi Bokuy — Bioinformática</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=Caveat:wght@600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #f5f0eb;
+      --dark: #1a1a2e;
+      --accent: #2d6a4f;
+      --accent2: #52b788;
+      --accent3: #d4a373;
+      --text: #2c2c2c;
+      --muted: #6b6b6b;
+      --card: #ffffff;
+      --border: #e0d9d0;
+    }
 
-**Bioinformática | Biología Computacional | Ciencia de Datos en Salud**
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-Apasionada por la ciencia, curiosa y orientada a resultados, con experiencia en entornos corporativos internacionales y formación avanzada en biología, bioestadística y bioinformática. Actualmente enfocada en aplicar análisis de datos, modelado estadístico y herramientas computacionales para resolver problemas en biología y salud.
+    html { scroll-behavior: smooth; }
 
----
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
 
-## Perfil Profesional
+    /* NOISE TEXTURE OVERLAY */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
 
-Profesional con base científica sólida y visión aplicada. Combino experiencia en sostenibilidad corporativa, análisis de datos y entornos de investigación biomédica. Mi objetivo es contribuir a la comunidad científica desde un enfoque cuantitativo, tecnológico y transformador.
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 4rem;
+      background: rgba(245, 240, 235, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
 
----
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem;
+      color: var(--dark);
+      text-decoration: none;
+    }
 
-## Formación
+    .nav-logo span {
+      color: var(--accent);
+    }
 
-**Máster en Bioinformática** — Universidad Internacional de La Rioja *(Actual)*
-Especialización en Biología Sanitaria
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
 
-**Máster en Bioestadística** — Universidad Complutense de Madrid
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
 
-**Grado en Biología** — Universidad Complutense de Madrid
+    .nav-links a:hover { color: var(--accent); }
 
----
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 8rem 4rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
 
-## Experiencia
+    .hero-bg-shape {
+      position: absolute;
+      right: -100px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(ellipse, rgba(82,183,136,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
 
-### Inditex — Técnico de Medioambiente *(2020–Actual)*
+    .hero-bg-shape2 {
+      position: absolute;
+      left: -50px;
+      bottom: 50px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(ellipse, rgba(212,163,115,0.12) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
 
-* Evaluación de materiales alternativos sostenibles
-* Análisis de certificaciones y trazabilidad de fibras
-* Cumplimiento de objetivos corporativos basados en la ciencia (SBTi)
-* Trabajo con múltiples stakeholders del sector
+    .hero-content {
+      max-width: 700px;
+      position: relative;
+      z-index: 1;
+      animation: fadeUp 0.9s ease both;
+    }
 
-### Facultad de Veterinaria UCM — Bioestadística
+    .hero-tag {
+      display: inline-block;
+      background: var(--accent2);
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      border-radius: 2rem;
+      margin-bottom: 1.5rem;
+    }
 
-* Modelos lineales generalizados (GLM)
-* Regresión binomial
-* Cálculo y comparación de AUC
-* Visualización e interpretación de datos experimentales
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      line-height: 1.05;
+      color: var(--dark);
+      margin-bottom: 1rem;
+    }
 
-### Instituto Cajal (CSIC) — Técnico de Laboratorio
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
 
-* Inmunohistoquímica y marcaje celular
-* Microscopía de fluorescencia y confocal
-* Análisis de migración celular y desarrollo neural
-* Manejo de modelos animales
+    .hero-sub {
+      font-size: 1.15rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 550px;
+      margin-bottom: 2.5rem;
+    }
 
----
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
 
-## Áreas de Interés
+    .btn-primary {
+      background: var(--dark);
+      color: white;
+      padding: 0.85rem 2rem;
+      border-radius: 0.4rem;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: background 0.2s, transform 0.2s;
+    }
 
-* Bioinformática aplicada a salud
-* Modelado estadístico en biología
-* Análisis de datos biomédicos
-* Biología computacional
-* Ciencia de datos para investigación
+    .btn-primary:hover {
+      background: var(--accent);
+      transform: translateY(-2px);
+    }
 
----
+    .btn-secondary {
+      border: 1.5px solid var(--dark);
+      color: var(--dark);
+      padding: 0.85rem 2rem;
+      border-radius: 0.4rem;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
 
-## Publicaciones
+    .btn-secondary:hover {
+      background: var(--dark);
+      color: white;
+      transform: translateY(-2px);
+    }
 
-* *Immunization with recombinant rHc23 partially protects lambs against trickle infections by Haemonchus contortus*
-* Modelo de simulación sobre políticas de vacunación VPH
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      color: var(--muted);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
 
----
+    .scroll-line {
+      width: 40px;
+      height: 1px;
+      background: var(--muted);
+    }
 
-## 🛠 Habilidades
+    /* SECTIONS */
+    section {
+      padding: 6rem 4rem;
+      position: relative;
+      z-index: 1;
+    }
 
-**Análisis y Estadística**
-GLM, regresión binomial, AUC, inferencia estadística
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 0.8rem;
+    }
 
-**Laboratorio**
-Inmunohistoquímica, microscopía avanzada, modelos animales
+    h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--dark);
+      margin-bottom: 3rem;
+      line-height: 1.15;
+    }
 
-**Sostenibilidad Científica**
-Trazabilidad de materiales, certificaciones, evaluación de impacto
+    /* SOBRE MÍ */
+    .about {
+      background: var(--dark);
+      color: white;
+    }
 
----
+    .about .section-label { color: var(--accent2); }
+    .about h2 { color: white; }
 
-## Idiomas
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
 
-Español — Nativo
-Inglés — C1
-Francés — Intermedio
+    .about-text p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 1.5rem;
+    }
 
----
+    .about-signature {
+      font-family: 'Caveat', cursive;
+      font-size: 2rem;
+      color: var(--accent2);
+      margin-top: 1rem;
+    }
 
-## 📫 Contacto
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
 
-📍 La Coruña, España
-📧 [Melissanbokuy@gmail.com](mailto:Melissanbokuy@gmail.com)
+    .stat-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 1.8rem;
+      border-radius: 0.8rem;
+    }
 
----
+    .stat-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.5rem;
+      color: var(--accent2);
+      display: block;
+    }
 
-✨ Este repositorio muestra proyectos y trabajos relacionados con bioinformática, análisis de datos y ciencia aplicada.
+    .stat-label {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+      margin-top: 0.3rem;
+    }
+
+    /* FORMACIÓN */
+    .education { background: var(--bg); }
+
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.5rem;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent2), transparent);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 3rem;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2.4rem;
+      top: 0.4rem;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent2);
+      border: 2px solid var(--bg);
+    }
+
+    .timeline-date {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent2);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.4rem;
+    }
+
+    .timeline-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem;
+      color: var(--dark);
+      margin-bottom: 0.2rem;
+    }
+
+    .timeline-sub {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    /* HABILIDADES */
+    .skills { background: #f0ece6; }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .skill-card {
+      background: var(--card);
+      border-radius: 1rem;
+      padding: 2rem;
+      border: 1px solid var(--border);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    }
+
+    .skill-icon {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .skill-card h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      color: var(--dark);
+      margin-bottom: 0.8rem;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag {
+      background: rgba(45,106,79,0.08);
+      color: var(--accent);
+      padding: 0.3rem 0.75rem;
+      border-radius: 2rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+    }
+
+    /* PROYECTOS / EXPERIENCIA */
+    .experience { background: var(--bg); }
+
+    .exp-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .exp-card {
+      background: var(--card);
+      border-radius: 1rem;
+      padding: 2.2rem;
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .exp-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(to right, var(--accent), var(--accent2));
+    }
+
+    .exp-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.1);
+    }
+
+    .exp-period {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--accent2);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.5rem;
+    }
+
+    .exp-card h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.35rem;
+      color: var(--dark);
+      margin-bottom: 0.3rem;
+    }
+
+    .exp-org {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+    }
+
+    .exp-card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .exp-card li {
+      font-size: 0.9rem;
+      color: var(--text);
+      padding-left: 1.2rem;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .exp-card li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent2);
+      font-size: 0.8rem;
+    }
+
+    /* PUBLICACIONES */
+    .publications { background: #f0ece6; }
+
+    .pub-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .pub-item {
+      background: var(--card);
+      border-radius: 0.8rem;
+      padding: 1.8rem 2rem;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+    }
+
+    .pub-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .pub-item p {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.05rem;
+      color: var(--dark);
+      line-height: 1.5;
+      font-style: italic;
+    }
+
+    /* IDIOMAS */
+    .languages-row {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .lang-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .lang-name {
+      font-weight: 600;
+      color: var(--dark);
+      font-size: 0.95rem;
+    }
+
+    .lang-level {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .lang-dots {
+      display: flex;
+      gap: 4px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+
+    .dot.filled { background: var(--accent2); }
+
+    /* CONTACTO */
+    .contact {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+    }
+
+    .contact h2 { color: white; margin-bottom: 1rem; }
+
+    .contact-sub {
+      color: rgba(255,255,255,0.6);
+      font-size: 1.05rem;
+      margin-bottom: 3rem;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 1rem 2rem;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 0.6rem;
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .contact-link:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    /* FOOTER */
+    footer {
+      background: #111122;
+      color: rgba(255,255,255,0.35);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.82rem;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      section { padding: 4rem 1.5rem; }
+      .hero { padding: 7rem 1.5rem 4rem; }
+      .hero-scroll { left: 1.5rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">M.<span>N</span></a>
+    <ul class="nav-links">
+      <li><a href="#sobre-mi">Sobre mí</a></li>
+      <li><a href="#formacion">Formación</a></li>
+      <li><a href="#habilidades">Habilidades</a></li>
+      <li><a href="#experiencia">Experiencia</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg-shape"></div>
+    <div class="hero-bg-shape2"></div>
+    <div class="hero-content">
+      <span class="hero-tag">Bioinformática · Ciencia de Datos · Salud</span>
+      <h1>Melissa<br><em>Ndombasi</em><br>Bokuy</h1>
+      <p class="hero-sub">Apasionada por la ciencia y orientada a resultados. Combino biología, bioestadística y herramientas computacionales para resolver problemas complejos en salud.</p>
+      <div class="hero-cta">
+        <a href="#experiencia" class="btn-primary">Ver experiencia</a>
+        <a href="#contacto" class="btn-secondary">Contacto</a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span class="scroll-line"></span>
+      Scroll
+    </div>
+  </section>
+
+  <!-- SOBRE MÍ -->
+  <section class="about" id="sobre-mi">
+    <div class="about-grid">
+      <div class="about-text fade-in">
+        <p class="section-label">Sobre mí</p>
+        <h2>Ciencia con propósito</h2>
+        <p>Profesional con base científica sólida y visión aplicada. Combino experiencia en sostenibilidad corporativa, análisis de datos y entornos de investigación biomédica.</p>
+        <p>Mi objetivo es contribuir a la comunidad científica desde un enfoque cuantitativo, tecnológico y transformador.</p>
+        <p>📍 La Coruña, España &nbsp;·&nbsp; 🌐 ES · EN · FR</p>
+        <div class="about-signature">Melissa ✦</div>
+      </div>
+      <div class="about-stats fade-in">
+        <div class="stat-card">
+          <span class="stat-num">2</span>
+          <span class="stat-label">Másteres universitarios</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">4+</span>
+          <span class="stat-label">Años de experiencia</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">2</span>
+          <span class="stat-label">Publicaciones científicas</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">3</span>
+          <span class="stat-label">Idiomas</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMACIÓN -->
+  <section class="education" id="formacion">
+    <p class="section-label">Trayectoria académica</p>
+    <h2>Formación</h2>
+    <div class="timeline">
+      <div class="timeline-item fade-in">
+        <div class="timeline-date">Actual</div>
+        <div class="timeline-title">Máster en Bioinformática</div>
+        <div class="timeline-sub">Universidad Internacional de La Rioja · Especialización en Biología Sanitaria</div>
+      </div>
+      <div class="timeline-item fade-in">
+        <div class="timeline-date">Completado</div>
+        <div class="timeline-title">Máster en Bioestadística</div>
+        <div class="timeline-sub">Universidad Complutense de Madrid</div>
+      </div>
+      <div class="timeline-item fade-in">
+        <div class="timeline-date">Completado</div>
+        <div class="timeline-title">Grado en Biología</div>
+        <div class="timeline-sub">Universidad Complutense de Madrid</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HABILIDADES -->
+  <section class="skills" id="habilidades">
+    <p class="section-label">Competencias</p>
+    <h2>Habilidades</h2>
+    <div class="skills-grid">
+      <div class="skill-card fade-in">
+        <div class="skill-icon">📊</div>
+        <h3>Análisis y Estadística</h3>
+        <div class="skill-tags">
+          <span class="tag">GLM</span>
+          <span class="tag">Regresión binomial</span>
+          <span class="tag">AUC</span>
+          <span class="tag">Inferencia estadística</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-icon">🔬</div>
+        <h3>Laboratorio</h3>
+        <div class="skill-tags">
+          <span class="tag">Inmunohistoquímica</span>
+          <span class="tag">Microscopía confocal</span>
+          <span class="tag">Modelos animales</span>
+          <span class="tag">Marcaje celular</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-icon">🌱</div>
+        <h3>Sostenibilidad Científica</h3>
+        <div class="skill-tags">
+          <span class="tag">Trazabilidad</span>
+          <span class="tag">Certificaciones</span>
+          <span class="tag">SBTi</span>
+          <span class="tag">Evaluación de impacto</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-icon">🧬</div>
+        <h3>Bioinformática</h3>
+        <div class="skill-tags">
+          <span class="tag">Biología computacional</span>
+          <span class="tag">Datos biomédicos</span>
+          <span class="tag">Ciencia de datos</span>
+          <span class="tag">Modelado estadístico</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 3rem;" class="fade-in">
+      <h3 style="font-family:'DM Serif Display',serif; font-size:1.3rem; margin-bottom:1.5rem; color:var(--dark)">Idiomas</h3>
+      <div class="languages-row">
+        <div class="lang-item">
+          <div>
+            <div class="lang-name">Español</div>
+            <div class="lang-level">Nativo</div>
+          </div>
+          <div class="lang-dots">
+            <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div>
+          </div>
+        </div>
+        <div class="lang-item">
+          <div>
+            <div class="lang-name">Inglés</div>
+            <div class="lang-level">C1</div>
+          </div>
+          <div class="lang-dots">
+            <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div>
+          </div>
+        </div>
+        <div class="lang-item">
+          <div>
+            <div class="lang-name">Francés</div>
+            <div class="lang-level">Intermedio</div>
+          </div>
+          <div class="lang-dots">
+            <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div><div class="dot"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCIA -->
+  <section class="experience" id="experiencia">
+    <p class="section-label">Trayectoria profesional</p>
+    <h2>Experiencia</h2>
+    <div class="exp-grid">
+      <div class="exp-card fade-in">
+        <div class="exp-period">2020 — Actual</div>
+        <h3>Técnico de Medioambiente</h3>
+        <div class="exp-org">Inditex</div>
+        <ul>
+          <li>Evaluación de materiales alternativos sostenibles</li>
+          <li>Análisis de certificaciones y trazabilidad de fibras</li>
+          <li>Cumplimiento de objetivos SBTi</li>
+          <li>Coordinación con múltiples stakeholders</li>
+        </ul>
+      </div>
+      <div class="exp-card fade-in">
+        <div class="exp-period">Investigación</div>
+        <h3>Bioestadística</h3>
+        <div class="exp-org">Facultad de Veterinaria · UCM</div>
+        <ul>
+          <li>Modelos lineales generalizados (GLM)</li>
+          <li>Regresión binomial</li>
+          <li>Cálculo y comparación de AUC</li>
+          <li>Visualización de datos experimentales</li>
+        </ul>
+      </div>
+      <div class="exp-card fade-in">
+        <div class="exp-period">Investigación</div>
+        <h3>Técnico de Laboratorio</h3>
+        <div class="exp-org">Instituto Cajal · CSIC</div>
+        <ul>
+          <li>Inmunohistoquímica y marcaje celular</li>
+          <li>Microscopía de fluorescencia y confocal</li>
+          <li>Análisis de migración celular</li>
+          <li>Desarrollo neural con modelos animales</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PUBLICACIONES -->
+  <section class="publications" id="publicaciones">
+    <p class="section-label">Producción científica</p>
+    <h2>Publicaciones</h2>
+    <div class="pub-list">
+      <div class="pub-item fade-in">
+        <div class="pub-icon">📄</div>
+        <p>Immunization with recombinant rHc23 partially protects lambs against trickle infections by Haemonchus contortus</p>
+      </div>
+      <div class="pub-item fade-in">
+        <div class="pub-icon">📄</div>
+        <p>Modelo de simulación sobre políticas de vacunación VPH</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="contact" id="contacto">
+    <p class="section-label">¿Hablamos?</p>
+    <h2>Contacto</h2>
+    <p class="contact-sub">Abierta a colaboraciones, proyectos de investigación y nuevas oportunidades.</p>
+    <div class="contact-links">
+      <a href="mailto:Melissanbokuy@gmail.com" class="contact-link">
+        📧 Melissanbokuy@gmail.com
+      </a>
+      <a href="#" class="contact-link">
+        📍 La Coruña, España
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 Melissa Ndombasi Bokuy · Bioinformática & Ciencia de Datos en Salud
+  </footer>
+
+  <script>
+    // Intersection Observer for fade-in animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
